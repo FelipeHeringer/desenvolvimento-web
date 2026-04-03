@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atv 6</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <main class="card">
+        <header>
+            <h1>Your To Do </h1>
+        </header>
+
+        <section class="add-task-section">
+            <form id="new-task-form" class="new-task-form" onsubmit="createNewTask(event)">
+                <input type="text" placeholder="Adicionar uma nova tarefa" id="new-task">
+                <button onclick="createNewTask(event)" class="add-btn">+</button>
+            </form>
+        </section>
+
+        <section class="tasks-section">
+            <ul id="tasks" class="tasks">
+            </ul>
+        </section>
+
+        <footer class="footer">
+            <p class="remaining" id="remaining">Seus todos restantes : 0</p>
+            <p class="quote" id="quote"></p>
+        </footer>
+    </main>
+</body>
+
+</html>
