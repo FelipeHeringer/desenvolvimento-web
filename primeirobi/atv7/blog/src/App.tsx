@@ -1,12 +1,17 @@
 import ArticleCard from "./components/ArticleCard";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import PostRelatedCard from "./components/PostRelatedCard";
+import Sidebar from "./components/Sidebar";
 import praiaBonita from "./assets/praia_bonita.jpg";
 import petropolis from "./assets/petropolis.jpg";
 import './App.css'
 
 export default function App() {
+  const relatedPosts = [
+    { title: "Post Relacionado 1", imageUrl: petropolis },
+    { title: "Post Relacionado 2", imageUrl: praiaBonita }
+  ];
+
   return (
     <div className="app">
       <Header />
@@ -18,10 +23,7 @@ export default function App() {
             "Destino como Fernando de Noronha, Porto de Galinhas, Praia do Espelho (Bahia) e Morro Branco (Ceará) "]}
           imageUrl={praiaBonita} />
       </main>
-      <aside className="aside">
-        <PostRelatedCard title="Post Relacionado 1" imageUrl={petropolis} />
-        <PostRelatedCard title="Post Relacionado 2" imageUrl={praiaBonita} />
-      </aside>
+      <Sidebar relatedPosts={relatedPosts} />
       <Footer content="Copyright © 2025 MinhaEmpresa, Inc." />
     </div>
   )
