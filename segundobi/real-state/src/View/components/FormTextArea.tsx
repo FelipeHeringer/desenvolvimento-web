@@ -1,6 +1,6 @@
 interface TextAreaProps {
     rows: number,
-    placeholder,
+    placeholder: string,
 }
 
 export function FormTextArea({rows, placeholder}: TextAreaProps) {
