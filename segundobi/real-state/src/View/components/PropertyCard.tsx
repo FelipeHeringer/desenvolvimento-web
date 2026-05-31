@@ -9,9 +9,9 @@ interface PropertyProps {
 export function PropertyCard({ img, title, location }: PropertyProps) {
     return (
         <div className="flex flex-col gap-1">
-            <div className="relative">
+            <div className="relative h-[220px] md:h-[340px]">
                 <img src={img}
-                    className="rounded-lg"
+                    className="rounded-lg w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-lg" />
             </div>

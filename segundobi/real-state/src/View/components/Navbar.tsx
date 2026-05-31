@@ -5,7 +5,6 @@ export function Navbar() {
         <nav >
             <ul className="flex space-x-5">
                 <Link text="Empreendimentos"/>
-                <Link text="Sobre" />
                 <Link text="Serviços"/>
                 <Link text="Contato" />
             </ul>

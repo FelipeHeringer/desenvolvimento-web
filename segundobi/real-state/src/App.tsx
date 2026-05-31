@@ -7,7 +7,7 @@ import PortifolioSection from "./View/components/layout/PortfolioSection";
 
 export default function App() {
   return (
-    <div className="bg-off-white">
+    <div className="bg-off-white relative">
       <Header />
       <HeroSection />
       <OurServicesSection />

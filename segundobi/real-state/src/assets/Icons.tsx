@@ -127,6 +127,26 @@ export function Close({ width = 24, height = 24 }: IconProps) {
     )
 }
 
+export function Chevron() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke="#6B7280"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.8"
+                d="m7.2 9.6 4.8 4.8 4.8-4.8"
+            ></path>
+        </svg>
+    )
+}
+
 export function Arch() {
     return (
         <svg

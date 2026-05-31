@@ -1,5 +1,5 @@
 import { Close } from "../../../assets/Icons";
-import { Button } from "../Button";
+import { Button, ButtonType } from "../Button";
 import Link from "../Link";
 
 interface MobileMenuProps {
@@ -14,12 +14,11 @@ export function MobileMenu({ onClose }: MobileMenuProps) {
                     <Close width={24} height={24} />
                 </button>
                 <ul className="flex flex-col gap-6 items-center">
-                    <Link text="Sobre" className="text-h3" />
                     <Link text="Serviços" className="text-h3" />
                     <Link text="Empreendimentos" className="text-h3" />
                     <Link text="Contato" className="text-h3" />
                 </ul>
-                <Button text={"Agendar Visita"} primary={true}/>
+                <Button text={"Agendar Visita"} type={ButtonType.Primary} />
             </section>
         </div>
     )

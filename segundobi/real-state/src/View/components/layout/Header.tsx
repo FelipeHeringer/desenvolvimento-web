@@ -1,16 +1,18 @@
 import { Logo, Menu } from "../../../assets/Icons";
 import { Navbar } from "../Navbar";
-import { Button } from "../Button";
+import { Button, ButtonType } from "../Button";
 import { useScreenSize } from "../../../ViewModel/hooks/useScreenSize";
 import { useState } from "react";
 import { MobileMenu } from "./MobileMenu";
+import { useBodyScrollLock } from "../../../ViewModel/hooks/useBodyScrollLock";
 
 export default function Header() {
     const [showMobileContent, setShowMobileContent] = useState(false);
     const screen = useScreenSize();
+    useBodyScrollLock(showMobileContent);
 
     return (
-        <div>
+        <div className=" fixed top-0 w-full z-50 bg-off-white">
             {/* Mobile Header */}
             {screen === 'mobile' ? (
                 <header className="flex py-4 px-3 justify-between items-center">
@@ -21,11 +23,11 @@ export default function Header() {
                 </header>
             ) : (
                 <header className="flex md:justify-between md:items-center md:py-4 md:px-3">
-            {/* Desktop Header */}
-                <Logo />
-                <Navbar />
-                <Button text="Agendar Visita" primary={true}/>
-            </header>
+                    {/* Desktop Header */}
+                    <Logo />
+                    <Navbar />
+                    <Button text="Agendar Visita" type={ButtonType.Primary} />
+                </header>
             )}
             {showMobileContent && (
                 <MobileMenu onClose={() => setShowMobileContent(false)} />
