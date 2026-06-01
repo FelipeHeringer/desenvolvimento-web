@@ -32,9 +32,11 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className={`md:flex md:justify-around md:gap-4 md:w-[45%]`}>
+                <div className={`flex gap-4
+                        ${isMobile ? 'flex-col' : 'justify-around w-[45%]'}
+                    `}>
                     {/* Quick Links*/}
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-3">
                         <h4 className="font-family-primary font-bold text-off-white text-[17px]">Links Rápidos</h4>
                         <div className="flex flex-col gap-3 list-none">
                             <Link text={"Empreendimentos"} />
@@ -43,7 +45,7 @@ export default function Footer() {
                         </div>
                     </div>
                     {/* Legal */}
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-3">
                         <h4 className="font-family-primary font-bold text-off-white text-[17px]">Legal</h4>
                         <div className="flex flex-col gap-3 list-none">
                             <Link text={"Privacidade"} />
@@ -52,7 +54,7 @@ export default function Footer() {
                         </div>
                     </div>
                     {/* Direct Contact*/}
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-3">
                         <h4 className="font-family-primary font-bold text-off-white text-[17px]">Contato Direto</h4>
                         <div className="flex flex-col gap-3">
                             {contacts.map((contact) => (
