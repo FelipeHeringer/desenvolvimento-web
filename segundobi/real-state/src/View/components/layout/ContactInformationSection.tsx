@@ -1,11 +1,14 @@
+import { useRef } from "react"
 import { Chevron, RoundedLocation, RoundedMail, RoundedPhone } from "../../../assets/Icons"
 import { useScreenSize } from "../../../ViewModel/hooks/useScreenSize"
 import { Button, ButtonType } from "../Button"
 import { ContactInformation } from "../ContactInformation"
-import { FormDropDown } from "../FormDropdown"
-import { FormInput } from "../FormInput"
+import { FormDropDown, type FormDropDownRef } from "../FormDropdown"
+import { FormInput, type FormInputRef } from "../FormInput"
 import { FormLabel } from "../FormLabel"
-import { FormTextArea } from "../FormTextArea"
+import { FormTextArea, type FormTextAreaRef } from "../FormTextArea"
+import { useContactForm } from "../../../ViewModel/hooks/useContactForm"
+import { AlertMessage, AlertMessageType } from "../AlertMessage"
 
 export default function ContactInformationSection() {
     const screen = useScreenSize();
@@ -14,10 +17,42 @@ export default function ContactInformationSection() {
     const informations = [
         { icon: <RoundedPhone />, title: "Telefone", description: "+55 (45) 99813-0054" },
         { icon: <RoundedMail />, title: "E-mail", description: "contato@hrnorte.com.br" },
-        { icon: <RoundedLocation />, title: "Endereço", description: "Av. Beira Mar Norte, 1200. Centro, Florianópolis - SC" },
+        { icon: <RoundedLocation />, title: "Endereço", description: "Cancelli, Cascavel - PR" },
     ]
 
     const subjects = ['Novo Projeto', 'Visitar Empreendimento', 'Solicitar Orçamento', 'Dúvidas sobre Financiamento', 'Outros']
+
+    const fullNameRef = useRef<FormInputRef>(null);
+    const emailRef = useRef<FormInputRef>(null);
+    const subjectRef = useRef<FormDropDownRef>(null);
+    const messageRef = useRef<FormTextAreaRef>(null);
+
+    function clearFields() {
+        fullNameRef.current?.clear();
+        emailRef.current?.clear();
+        subjectRef.current?.clear();
+        messageRef.current?.clear();
+    }
+
+    const { status, submit, dismiss } = useContactForm(clearFields);
+
+    function handleSubmit() {
+        void submit({
+            fullName: fullNameRef.current?.getValue(),
+            email: emailRef.current?.getValue(),
+            subject: subjectRef.current?.getValue(),
+            message: messageRef.current?.getValue(),
+        });
+    }
+
+    const alert =
+        status.state === "success" || status.state === "error"
+            ? {
+                type: status.state === "success" ? AlertMessageType.SUCCESS : status.type,
+                title: status.title,
+                message: status.message,
+            }
+            : null;
 
     return (
         <section className="py-12 bg-off-white">
@@ -56,27 +91,53 @@ export default function ContactInformationSection() {
                 </div>
                 <div className={`md:pl-3 md:w-[45%]`}>
                     {/* Contact Form  */}
-                    <form action="" className="flex flex-col gap-6 py-8 px-8 bg-[#FFFFFF] rounded-lg">
-                        <h4 className="font-family-primary font-bold text-charcoal text-h3">Envie uma Mensagem</h4>
+                    <form
+                        className="flex flex-col gap-6 py-8 px-8 bg-[#FFFFFF] rounded-lg"
+                        onSubmit={e => {
+                            e.preventDefault();
+                            handleSubmit();
+                        }}
+                    >
+                        <h4 className="font-family-primary font-bold text-charcoal text-h3">
+                            Envie uma Mensagem
+                        </h4>
+
+                        {/* Alert — aparece só quando há feedback */}
+                        {alert && (
+                            <div className="fixed bottom-3 right-3">
+                                <AlertMessage
+                                    type={alert.type}
+                                    title={alert.title}
+                                    message={alert.message}
+                                    onClose={dismiss}
+                                />
+                            </div>
+                        )}
                         <div className="flex flex-col gap-5">
                             <div className="flex flex-col gap-2">
                                 <FormLabel title={"NOME COMPLETO"} />
-                                <FormInput placeholder={"Seu Nome"} type={"name"} />
+                                <FormInput ref={fullNameRef} placeholder={"Seu Nome"} type={"name"} />
                             </div>
                             <div className="flex flex-col gap-2">
                                 <FormLabel title={"E-MAIL"} />
-                                <FormInput placeholder={"seu@email.com"} type={"email"} />
+                                <FormInput ref={emailRef} placeholder={"seu@email.com"} type={"email"} />
                             </div>
                             <div className="flex flex-col gap-2">
                                 <FormLabel title={"ASSUNTO"} />
-                                <FormDropDown icon={<Chevron />} values={subjects} />
+                                <FormDropDown ref={subjectRef} icon={<Chevron />} values={subjects} />
                             </div>
                             <div className="flex flex-col gap-2">
                                 <FormLabel title={"MENSAGEM"} />
-                                <FormTextArea rows={3} placeholder={"Como podemos ajudar?"} />
+                                <FormTextArea ref={messageRef} rows={3} placeholder={"Como podemos ajudar?"} />
                             </div>
                             <div className={`md:flex md:justify-end md:pt-2`}>
-                                <Button text={"ENVIAR MENSAGEM"} type={ButtonType.Tertiary} className={`${isMobile ? 'w-full' : ' px-2 w-[40%]'}`} />
+                                <Button
+                                    text={status.state === "loading" ? "ENVIANDO..." : "ENVIAR MENSAGEM"}
+                                    type={ButtonType.Tertiary}
+                                    onClick={handleSubmit}
+                                    disabled={status.state === "loading"}
+                                    className={isMobile ? "w-full" : "px-2 w-[40%]"}
+                                />
                             </div>
                         </div>
                     </form>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 
 interface DropdownProps {
     icon?: React.ReactNode;
@@ -6,9 +6,22 @@ interface DropdownProps {
     placeholder?: string;
 }
 
-export function FormDropDown({ icon, values, placeholder = "Selecione" }: DropdownProps) {
+export interface FormDropDownRef {
+    getValue: () => string;
+    clear: () => void;
+}
+
+export const FormDropDown = forwardRef<FormDropDownRef, DropdownProps>(function FormDropDown(
+    { icon, values, placeholder = "Selecione" },
+    ref
+) {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState<string | null>(null);
+
+    useImperativeHandle(ref, () => ({
+        getValue: () => selected ?? "",
+        clear: () => setSelected("Selecione"),
+    }));
 
     return (
         <div className="relative w-full">
@@ -43,4 +56,4 @@ export function FormDropDown({ icon, values, placeholder = "Selecione" }: Dropdo
             )}
         </div>
     );
-}
+});
