@@ -14,7 +14,7 @@ export default function OurServicesSection() {
 
 
     return (
-        <section className=" container bg-off-white py-8 flex flex-col gap-6">
+        <section id="services" className=" container bg-off-white py-8 flex flex-col gap-6">
             <div className={`flex gap-2
                         ${isMobile ? 'flex-col ' : 'justify-between items-center'}
                 `}>

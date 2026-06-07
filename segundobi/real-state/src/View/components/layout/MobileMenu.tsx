@@ -13,10 +13,10 @@ export function MobileMenu({ onClose }: MobileMenuProps) {
                 <button className="absolute top-4 right-3 p-0.5" onClick={onClose} >
                     <Close width={24} height={24} />
                 </button>
-                <ul className="flex flex-col gap-6 items-center">
-                    <Link text="Serviços" className="text-h3" />
-                    <Link text="Empreendimentos" className="text-h3" />
-                    <Link text="Contato" className="text-h3" />
+                <ul className="flex flex-col gap-6 items-center scroll-smooth">
+                    <Link text="Serviços" href="#services" className="text-h3" />
+                    <Link text="Empreendimentos" href="#portfolio" className="text-h3" />
+                    <Link text="Contato" href="#contact" className="text-h3" />
                 </ul>
                 <Button text={"Agendar Visita"} type={ButtonType.Primary} />
             </section>

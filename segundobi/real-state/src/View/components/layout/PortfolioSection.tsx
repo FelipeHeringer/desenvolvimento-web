@@ -16,7 +16,7 @@ export default function PortifolioSection() {
     ];
 
     return (
-        <section className=" bg-[#F7F3F1] py-12">
+        <section id="portfolio" className=" bg-[#F7F3F1] py-12">
             <div className=" container flex flex-col gap-2">
                 <h3 className="font-family-primary text-h2 font-bold">Destaques do Portifólio</h3>
                 <p className="font-family-primary text-body text-[#474741]">Nossa contruções mais emblemáticas</p>

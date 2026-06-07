@@ -12,7 +12,7 @@ export default function Header() {
     useBodyScrollLock(showMobileContent);
 
     return (
-        <div className=" fixed top-0 w-full z-50 bg-off-white">
+        <div className="fixed top-0 w-full z-50 bg-off-white">
             {/* Mobile Header */}
             {screen === 'mobile' ? (
                 <header className="flex py-4 px-3 justify-between items-center">

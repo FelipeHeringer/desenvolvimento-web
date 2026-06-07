@@ -55,7 +55,7 @@ export default function ContactInformationSection() {
             : null;
 
     return (
-        <section className="py-12 bg-off-white">
+        <section id="contact" className="py-12 bg-off-white">
             <div className={`container flex
                     ${isMobile ? 'flex-col gap-12' : 'justify-between gap-8'}
                 `}>

@@ -38,10 +38,10 @@ export default function Footer() {
                     {/* Quick Links*/}
                     <div className="flex flex-col gap-3">
                         <h4 className="font-family-primary font-bold text-off-white text-[17px]">Links Rápidos</h4>
-                        <div className="flex flex-col gap-3 list-none">
-                            <Link text={"Empreendimentos"} />
-                            <Link text={"Contato"} />
-                            <Link text={"Serviços"} />
+                        <div className="flex flex-col gap-3 list-none scroll-smooth">
+                            <Link text={"Empreendimentos"} href="#portfolio"/>
+                            <Link text={"Contato"} href="#contact"/>
+                            <Link text={"Serviços"} href="#services"/>
                         </div>
                     </div>
                     {/* Legal */}
