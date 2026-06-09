@@ -2,7 +2,7 @@ import Link from "./Link"
 
 export function Navbar() {
     return (
-        <nav className="scroll-smooth">
+        <nav>
             <ul className="flex space-x-5">
                 <Link text="Empreendimentos" href="#portfolio"/>
                 <Link text="Serviços" href="#services"/>

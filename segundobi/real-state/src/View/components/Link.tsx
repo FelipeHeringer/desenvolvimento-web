@@ -5,12 +5,13 @@ interface LinkProps {
     text: string;
     href?: string;
     className?: HTMLProps<HTMLAnchorElement>["className"];
+    onClick?: () => void;
 }
 
-export default function Link({ text, href = "", className = "" }: LinkProps) {
+export default function Link({ text, href = "", className = "", onClick }: LinkProps) {
     return (
         <li >
-            <a href={href} className={tw("relative inline-block group font-family-primary text-text-secondary", className)}>
+            <a href={href} onClick={onClick} className={tw("relative inline-block group font-family-primary text-text-secondary", className)}>
                 {text}
                 <span className="
                             absolute bottom-0 left-0
